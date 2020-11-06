@@ -36,3 +36,7 @@ SOURCE delete-database.sql;
 scp cs332f11@shell.ecs.fullerton.edu:/home/titan0/cs332f/cs332f11/homepage/ .
 # just specify the file path inside homepage
 ```
+
+## Web browser navigation
+
+- [Link](http://ecs.fullerton.edu/~cs332f11/)
