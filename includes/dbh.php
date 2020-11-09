@@ -15,6 +15,31 @@ class Person {
     }
 }
 
+class Professor {
+    public $name;
+    public $name;
+    public $address;
+    public $telephone;
+    public $city;
+    public $state;
+    public $zipcode;
+
+    function __construct($container_){
+        list($ssn_, $name_, $address_, $telephone_, $city_, $state_, $zipcode_) = $container_;
+        $this->ssn = $ssn_;
+        $this->name = $name_;
+        $this->address = $address_;
+        $this->telephone = $telephone_;
+        $this->city = $city_;
+        $this->state = $state_;
+        $this->zipcode = $zipcode_;
+    }
+    
+    function get_name(){
+        return $this->name;
+    }
+}
+
 $dbServerName = "localhost";
 $dbUserName = "cs332f11";
 $dbPassword = "Moadel0k";
@@ -27,8 +52,7 @@ $resultCheck = mysqli_num_rows($result);
 
 if($resultCheck > 0){
     while($row = mysqli_fetch_assoc($result)){
-        $person = new Person($row['user_first']);
-        echo "I can't believe that worked";
+        $prof = new Professor($row);
     }
 } else {
     echo "oops";
