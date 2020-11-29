@@ -32,9 +32,22 @@ def testSytax():
 
     cursor.executescript(sql_as_string)
 
-    for row in cursor.execute("SELECT name, chairperson FROM department"):
-        name, chair = row
-        print(f'Department: {name}\nChairperson: {chair}\n\n')
+
+    def SSNQuery(SSN: int):
+        if not(isinstance(SSN, int)):
+            raise ValueError
+        results = []
+        for row in cursor.execute(f"SELECT basecourse, meeting_days,start_time,end_time FROM SECTION WHERE teacher={SSN}"):
+            results.append(row)
+        for element in results:
+            basecourse, meeting_days, start_time, end_time = element
+            for selection in cursor.execute(f'SELECT title FROM COURSE WHERE identifier={basecourse}'):
+                title = selection[0]
+                print(basecourse, title, meeting_days, start_time, end_time)
+
+    # basically the question box for the SSN, needs to get piped into the SQL shit
+    # question = input("SSN: ")
+    SSNQuery(1234567891)
 
 def generateStudent():
     fnames = [
