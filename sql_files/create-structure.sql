@@ -19,3 +19,12 @@ CREATE TABLE student (
 	telephone varchar(25),			-- phone number
 	PRIMARY KEY(cwid)				-- Campus Wide ID is primary key
 );
+
+-- Department Table
+CREATE TABLE department (
+	name varchar(255) NOT NULL,
+	number_ int(25) NOT NULL,
+	location varchar(512) NOT NULL,
+	telephone varchar(25),
+	PRIMARY KEY(number)
+);
