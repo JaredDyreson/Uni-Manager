@@ -9,3 +9,13 @@ CREATE TABLE professor (
     telephone varchar(25),
     PRIMARY KEY(ssn)
 );
+
+-- Student Table
+CREATE TABLE student (
+	firstN varchar(255) NOT NULL,	-- first name
+	lastN varchar(255) NOT NULL, 	-- last name
+	cwid int(9) NOT NULL,			-- campus wide ID
+	address varchar(512) NOT NULL,	-- full address
+	telephone varchar(25),			-- phone number
+	PRIMARY KEY(cwid)				-- Campus Wide ID is primary key
+);
