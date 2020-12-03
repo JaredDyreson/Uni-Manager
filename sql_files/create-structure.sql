@@ -16,15 +16,15 @@ CREATE TABLE student (
 	lastN varchar(255) NOT NULL, 	-- last name
 	cwid int(9) NOT NULL,			-- campus wide ID
 	address varchar(512) NOT NULL,	-- full address
-	telephone varchar(25),			-- phone number
+	telephone varchar(25),			-- telephone number
 	PRIMARY KEY(cwid)				-- Campus Wide ID is primary key
 );
 
 -- Department Table
 CREATE TABLE department (
-	name varchar(255) NOT NULL,
-	number_ int(25) NOT NULL,
-	location varchar(512) NOT NULL,
-	telephone varchar(25),
-	PRIMARY KEY(number)
+	name varchar(255) NOT NULL,		-- name
+	number_ int(25) NOT NULL,		-- number
+	location varchar(512) NOT NULL,	-- office location
+	telephone varchar(25),			-- telephone number
+	PRIMARY KEY(number_)			-- number is primary key
 );
