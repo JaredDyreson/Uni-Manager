@@ -14,11 +14,11 @@ class Extractor {
             $this->username,
             $this->password
         );
-        $this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     }
 
     function query($command) {
         $statement = $this->connection->prepare($command);
+        //return $statement->execute() ? $statement->fetchAll(PDO::FETCH_ASSOC) : Array();
         return $statement->execute() ? $statement->fetchAll(PDO::FETCH_NUM) : Array();
     }
 
@@ -32,12 +32,16 @@ class Extractor {
         return file_get_contents($path);
     }
 
-
-    function print_query($content){
-        foreach($content as &$row) { 
-            foreach($row as &$element) { echo "$element"; }
+    function showTables(){
+        $tables = Array();
+        $contents = "show tables;";
+        $contents = $this->query($contents);
+        foreach($contents as $table) {
+            array_push($tables, $table[0]);
         }
+        print_r($tables);
     }
+
 };
 
 ?>
