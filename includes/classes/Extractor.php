@@ -14,11 +14,11 @@ class Extractor {
             $this->username,
             $this->password
         );
+        $this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     }
 
     function query($command) {
         $statement = $this->connection->prepare($command);
-        //return $statement->execute() ? $statement->fetchAll(PDO::FETCH_ASSOC) : Array();
         return $statement->execute() ? $statement->fetchAll(PDO::FETCH_NUM) : Array();
     }
 

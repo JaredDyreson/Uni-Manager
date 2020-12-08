@@ -38,12 +38,16 @@ class Extractor {
         return file_get_contents($path);
     }
 
-
-    function print_query($content){
-        foreach($content as &$row) { 
-            foreach($row as &$element) { echo "$element"; }
+    function showTables(){
+        $tables = Array();
+        $contents = "show tables;";
+        $contents = $this->query($contents);
+        foreach($contents as $table) {
+            array_push($tables, $table[0]);
         }
+        print_r($tables);
     }
+
 };
 
 $information = Array(
@@ -69,20 +73,22 @@ $extractor->query_file("../sql_files/create-structure.sql");
 
 // Fill in data
 
-$extractor->query_file("../sql_files/fill-structure.sql");
+$extractor->query("select");
 
-// Get and print data
+$directory = "../sql_files/filling";
 
-$contents = $extractor->query("select * from professor");
-foreach($contents as $professor => $value) {
-    $prof = new Professor($value);
-    print_r($prof);
+$scanned_directory = array_diff(scandir($directory), array('..', '.'));
+
+foreach($scanned_directory as $file) {
+    $format = '%s/%s';
+    $path = sprintf($format, $directory, $file);
+    echo "$path\n";
+    $extractor->query_file($path);
 }
-
 
 // Delete contents
 
-$extractor->query_file("../sql_files/delete-database.sql");
+//$extractor->query_file("../sql_files/delete-database.sql");
 
 ?>
 

@@ -1,7 +1,8 @@
 <?php
 
-include_once('classes/Professor.php');
 include_once('classes/Extractor.php');
+include_once('classes/Professor.php');
+include_once('classes/Student.php');
 
 $information = Array(
     "localhost",
@@ -13,6 +14,39 @@ $information = Array(
 
 $extractor = new Extractor($information);
 
+function createStructure($xtractor){
+    // STEPS
+    // 1. Create the structure in which the data should be filled in
+    // 2. Fill in the data with pre-determined values
+    // 3. Do an example query on the database
+    // 4. Drop all tables
+
+    // Simulates as if it's in memory
+
+    // Create the database structure
+
+    $xtractor->query_file("../sql_files/create-structure.sql");
+
+    // Fill in data
+
+
+    $directory = "../sql_files/filling";
+
+    $scanned_directory = array_diff(scandir($directory), array('..', '.'));
+
+    foreach($scanned_directory as $f) {
+        $format = '%s/%s';
+        $path = sprintf($format, $directory, $f);
+
+        $extractor->query_file($path);
+    }
+    // TODO
+    // Get and print data
+
+    // Delete contents
+
+}
+
 function getAllProfessors($xtractor) {
     $contents = $xtractor->query("select * from professor");
 
@@ -22,7 +56,7 @@ function getAllProfessors($xtractor) {
     }
 }
 
-function getCertainProfessor($xtractor, $ssn){
+function getCertainProfessor($xtractor, $ssn) {
     $format = 'select * from professor where ssn=%d;';
     $string = sprintf($format, $ssn);
     
@@ -35,54 +69,31 @@ function getCertainProfessor($xtractor, $ssn){
     return $container;
 }
 
-// STEPS
-// 1. Create the structure in which the data should be filled in
-// 2. Fill in the data with pre-determined values
-// 3. Do an example query on the database
-// 4. Drop all tables
+function getAllStudents($xtractor){
+    $contents = $xtractor->query("select * from student");
 
-// Simulates as if it's in memory
-
-// Create the database structure
-
-$extractor->query_file("../sql_files/create-structure.sql");
-
-// Fill in data
-
-$extractor->query_file("../sql_files/fill-structure.sql");
-
-// Get and print data
-
-$result = getCertainProfessor($extractor, 123456781);
-//print_r($result[0]);
-
-$contents = $extractor->query("select sections from course");
-
-foreach($contents as $courses => $section) {
-    //$prof = new Professor($value);
-    //print_r($prof);
-
-    $sections = explode(",", $section[0]);
-    foreach($sections as $section){
-        print_r($section);
+    foreach($contents as $students => $values) {
+        $student = new Student($values);
+        print_r($student);
     }
-    //print_r($course);
 }
 
-$CONTENT = $extractor->query("select");
-print_r($CONTENT);
+function getCertainStudent($xtractor, $studentName){
+    $format = 'select * from student where fullname="%s";';
+    $string = sprintf($format, $studentName);
 
-foreach($CONTENT as $courses => $section) {
-    //$prof = new Professor($value);
-    //print_r($prof);
-    print_r($section);
+    $contents = $xtractor->query($string);
 
-    //print_r($course);
+    foreach($contents as $students => $values) {
+        $student = new Student($values);
+        print_r($student);
+    }
 }
 
-// Delete contents
-
-$extractor->query_file("../sql_files/delete-database.sql");
+createStructure($extractor);
+$contents = $extractor->query_file("../sql_files/requirements/professor/professor-classes.sql");
+print_r($contents);
+$xtractor->query_file("../sql_files/delete-database.sql");
 
 ?>
 
