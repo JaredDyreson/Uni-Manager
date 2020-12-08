@@ -50,6 +50,54 @@ class Extractor {
 
 };
 
+class ProfessorPortal {
+    function __construct($xtractor){
+        $this->extractor = $xtractor;
+        $this->basedir = "../sql_files/requirements/professor/";
+    }
+
+    function listCourses($SSN){
+        $output = $this->extractor->query_file($this->basedir .= "distinct-grades.sql");
+        print_r($output);
+    }
+};
+
+class StudentPortal {
+    function __construct($xtractor){
+        $this->extractor = $xtractor;
+        $this->basedir = "../sql_files/requirements/student/";
+    }
+
+    function showGrades($CWID){
+        $format = <<<'EOD'
+        select title, subPull.grade from (
+            select * from record where student_cwid=%d
+        ) subPull
+        join (
+            select section, title
+            from course
+        ) subCourse where subCourse.section=subPull.course_id group by title;
+        EOD;
+        $query = sprintf($format, $CWID);
+        return $this->extractor->query($query);
+    }
+
+    function listClassInformation($CLASS){
+        $format = <<<'EOD'
+        select title, section, seats, classroom, meeting_days, beginning_time, ending_time from (
+            select *
+            from course where number_=%d
+        ) coursesPull
+        join (
+            select * from section
+        ) data where data.number_=coursesPull.section
+        EOD;
+        $query = sprintf($format, $CLASS);
+        return $this->extractor->query($query);
+    }
+};
+
+
 $information = Array(
     "localhost",
     "jared",
@@ -82,13 +130,20 @@ $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 foreach($scanned_directory as $file) {
     $format = '%s/%s';
     $path = sprintf($format, $directory, $file);
-    echo "$path\n";
+    //echo "$path\n";
     $extractor->query_file($path);
 }
 
+//$PP = new ProfessorPortal($extractor);
+//$PP->listCourses(123456781);
+
+$SP = new StudentPortal($extractor);
+print_r($SP->showGrades(889546521));
+print_r($SP->listClassInformation(338));
+
 // Delete contents
 
-//$extractor->query_file("../sql_files/delete-database.sql");
+$extractor->query_file("../sql_files/delete-database.sql");
 
 ?>
 
