@@ -1,5 +1,8 @@
 <?php
 
+
+date_default_timezone_set("America/Los_Angeles"); 
+
 class ProfessorPortal {
     function __construct($xtractor) {
         $this->extractor = $xtractor;
@@ -24,19 +27,22 @@ class ProfessorPortal {
         array_push($amount, "</tr>\n");
         $letter_grades = implode(" ", $letter_grades);
         $amount = implode(" ", $amount);
+        $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
         $format = <<<EOD
         <html>
         <head>
-            <link rel="stylesheet" href="../styles.css"></link>
+            <link rel="stylesheet" href="styles.css"></link>
         </head>
         <body>
 
         <center>
+        <h1>Grades Report</h1>
         <table>
         $letter_grades
         $amount
         </table>
+        Generated on: $timeStamp
         </center>
 
         </body>
