@@ -39,16 +39,20 @@ class StudentPortal {
         $tableView = implode(" ", $tables);
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
-        $HTMLCODE = <<<EOD
-        <center>
-        <h1>Grades Report for $CWID</h1>
-        <table>
-        $tableView
-        </table>
-        Generated on: $timeStamp
-        </center>
-        EOD;
-        return $HTMLCODE;
+	$HTMLCODE = <<<EOD
+	<center>
+	<h1>Grades Report for $CWID</h1>
+	<table>
+	<tr>
+	<td>Class</td>
+	<td>Grade</td>
+	</tr>
+	$tableView
+	</table>
+	Generated on: $timeStamp
+	</center>
+	EOD;
+	return $HTMLCODE;
     }
 
     function listClassInformation($CLASS){

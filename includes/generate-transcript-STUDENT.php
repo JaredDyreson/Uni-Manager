@@ -18,10 +18,10 @@ $information = Array(
 $extractor = new Extractor($information);
 
 $SP = new StudentPortal($extractor);
-$CWID = $_POST["student-cwid"];
+// $CWID = $_POST["student-cwid"];
+$CWID = 887300085;
 
-//print_r($SP->showGrades(887300085));
-$webpage = $SP->showGrades(887300085);
+$webpage = $SP->showGrades($CWID);
 echo "$webpage\n";
 
 ?>

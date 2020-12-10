@@ -27,15 +27,15 @@ class ProfessorPortal {
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
         $format = <<<EOD
-        <center>
-        <h1>Grades Report</h1>
-        <table>
-        $letter_grades
-        $amount
-        </table>
-        Generated on: $timeStamp
-        </center>
-        EOD;
+	<center>
+	<h1>Grades Report</h1>
+	<table>
+	$letter_grades
+	$amount
+	</table>
+	Generated on: $timeStamp
+	</center>
+	EOD;
         return $format;
     }
 };
