@@ -17,32 +17,33 @@ class StudentPortal {
         ) subCourse where subCourse.section=subPull.course_id group by title;
         EOD;
 
-        $letter_grades = Array("<tr>\n");
-        $class = Array("<tr>\n");
-
         $query = sprintf($format, $CWID);
         $response = $this->extractor->query($query);
+        $tables = Array();
+
 
         foreach($response as $line){
-            list($a, $b) = $line;
-            array_push($letter_grades, "\t<th>" . $a . "</th>\n");
-            array_push($class, "\t<th>" . $b . "</th>\n");
-	}
 
-        array_push($letter_grades, "</tr>\n");
-	array_push($class, "</tr>\n");
+            list($class, $grade) = $line;
 
-        $letter_grades = implode(" ", $letter_grades);
-        $class = implode(" ", $class);
+            $tableformat = <<<EOD
+            <tr>
+            <td>$class</td>
+            <td>$grade</td>
+            </tr>
+            EOD;
 
+            $tableView = sprintf($tableformat, $grade, $class);
+            array_push($tables, $tableView);
+	    }
+        $tableView = implode(" ", $tables);
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
         $HTMLCODE = <<<EOD
         <center>
         <h1>Grades Report for $CWID</h1>
         <table>
-        $letter_grades
-        $class
+        $tableView
         </table>
         Generated on: $timeStamp
         </center>

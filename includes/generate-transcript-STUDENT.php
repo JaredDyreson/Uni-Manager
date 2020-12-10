@@ -21,7 +21,7 @@ $SP = new StudentPortal($extractor);
 $CWID = $_POST["student-cwid"];
 
 //print_r($SP->showGrades(887300085));
-$webpage = $SP->showGrades($CWID);
+$webpage = $SP->showGrades(887300085);
 echo "$webpage\n";
 
 ?>
