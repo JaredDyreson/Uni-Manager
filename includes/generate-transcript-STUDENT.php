@@ -1,3 +1,8 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../styles.css"></link>
+</head>
+
 <?php
 
 include_once('classes/Extractor.php');
@@ -5,7 +10,7 @@ include_once('classes/StudentPortal.php');
 
 $information = Array(
     "localhost",
-    "jared",
+    "newuser",
     "password",
     "csuf"
 );

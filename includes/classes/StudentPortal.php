@@ -1,4 +1,6 @@
 <?php
+
+date_default_timezone_set("America/Los_Angeles"); 
 class StudentPortal {
     function __construct($xtractor){
         $this->extractor = $xtractor;
@@ -25,7 +27,11 @@ class StudentPortal {
             list($a, $b) = $line;
             array_push($letter_grades, "\t<th>" . $a . "</th>\n");
             array_push($class, "\t<th>" . $b . "</th>\n");
-        }
+	}
+
+        array_push($letter_grades, "</tr>\n");
+	array_push($class, "</tr>\n");
+
         $letter_grades = implode(" ", $letter_grades);
         $class = implode(" ", $class);
 
@@ -33,7 +39,7 @@ class StudentPortal {
 
         $HTMLCODE = <<<EOD
         <center>
-        <h1>Grades Report -- Transcript</h1>
+        <h1>Grades Report for $CWID</h1>
         <table>
         $letter_grades
         $class
