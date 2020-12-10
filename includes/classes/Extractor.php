@@ -8,12 +8,16 @@ class Extractor {
     public $connection;
 
     function __construct($container_){
-        list($this->servername, $this->username, $this->password, $this->dbname) = $container_;
-        $this->connection = new PDO(
-            "mysql:host=$this->servername; dbname=$this->dbname",
-            $this->username,
-            $this->password
-        );
+	list($this->servername, $this->username, $this->password, $this->dbname) = $container_;
+	try{
+		$this->connection = new PDO(
+		    "mysql:host=$this->servername; dbname=$this->dbname",
+		    $this->username,
+		    $this->password
+		);
+	} catch (Exception $e){
+		echo "ERROR: ", $e->getMessage(), "\n";
+	}
     }
 
     function query($command) {

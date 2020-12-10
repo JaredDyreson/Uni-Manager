@@ -1,13 +1,19 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../styles.css"></link>
+</head>
+
 <?php
 
-include_once('classes/DatabaseFiller.php');
+
+// include_once('classes/DatabaseFiller.php');
 include_once('classes/Extractor.php');
 include_once('classes/ProfessorPortal.php');
-include_once('classes/StudentPortal.php');
+// include_once('classes/StudentPortal.php');
 
 $information = Array(
     "localhost",
-    "jared",
+    "newuser",
     "password",
     "csuf"
 );
@@ -19,8 +25,8 @@ $extractor = new Extractor($information);
 * will be removed when not needed
 */
 
-$fillem = new Filler($extractor);
-$fillem->fill();
+// $fillem = new Filler($extractor);
+// $fillem->fill();
 
 
 /*
@@ -32,10 +38,10 @@ $PP = new ProfessorPortal($extractor);
 
 $webpage =  $PP->listCourses(26038);
 echo "$webpage\n";
-$SP = new StudentPortal($extractor);
+// $SP = new StudentPortal($extractor);
 
-print_r($SP->showGrades(889546521));
-$fillem->delete_();
+// print_r($SP->showGrades(889546521));
+// $fillem->delete_();
 
 ?>
 
