@@ -39,8 +39,9 @@ $extractor = new Extractor($information);
 //$webpage =  $PP->listCourses(26038);
 //echo "$webpage\n";
 $SP = new StudentPortal($extractor);
+echo $SP->listClassInformation(315);
 
-print_r($SP->showGrades(887300085));
+//print_r($SP->showGrades(887300085));
 // $fillem->delete_();
 
 ?>

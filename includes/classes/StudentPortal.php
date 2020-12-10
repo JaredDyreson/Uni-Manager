@@ -56,17 +56,34 @@ class StudentPortal {
     }
 
     function listClassInformation($CLASS){
-        $format = <<<'EOD'
-        select title, section, seats, classroom, meeting_days, beginning_time, ending_time from (
+        $queryFormatLarge = <<<'EOD'
+        select course_.section, section_.classroom, section_.seats, section_.meeting_days, section_.beginning_time, section_.ending_time from (
             select *
             from course where number_=%d
-        ) coursesPull
+        ) course_
         join (
-            select * from section
-        ) data where data.number_=coursesPull.section
+            select *
+            from section
+        ) section_ where course_.section=section_.number_;
         EOD;
-        $query = sprintf($format, $CLASS);
-        return $this->extractor->query($query);
+        //$query = sprintf($queryFormatLarge, $CLASS);
+        //$result =  $this->extractor->query($query);
+
+        $titleQuery = "select title from course where number_=%d;";
+        $titleQuery = sprintf($titleQuery, $CLASS);
+        $titleResult =  $this->extractor->query($titleQuery)[0][0];
+        print_r($titleResult);
+        
+
+        $timeStamp = date('l jS \of F Y \a\t H:i:s');
+
+	$HTMLCODE = <<<EOD
+	<center>
+	<h1>Section Report for $titleResult</h1>
+	Generated on: $timeStamp
+	</center>
+	EOD;
+	return $HTMLCODE;
     }
 };
 ?>
