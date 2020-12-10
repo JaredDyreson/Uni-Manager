@@ -28,3 +28,15 @@ CREATE TABLE department (
 	telephone varchar(25),			-- telephone number
 	PRIMARY KEY(number_)			-- number is primary key
 );
+
+
+-- Section table
+CREATE TABLE section (
+	number_ int(25) NOT NULL,		-- number
+	classroom varchar(512) NOT NULL,-- classroom
+	seats int(25) NOT NULL, 		-- number of seats
+	meetingdays varchar(512) NOT NULL,		-- meeting days
+	beginningtime varchar(512) NOT NULL,	-- beginning time
+	endingtime varchar(512) NOT NULL,		-- ending time
+	PRIMARY KEY(number_)					-- number is primary key
+)
