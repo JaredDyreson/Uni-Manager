@@ -9,12 +9,8 @@ class ProfessorPortal {
     }
 
     function listCourses(){
-        // $format = "select grade, count(*) from record where course_id=%d group by grade;";
         $format = "select grade, count(*) from record group by grade;";
-        // $Q = sprintf($format, $courseID);
         $output = $this->extractor->query($format);
-
-
 
         $letter_grades = Array("<tr>\n");
         $amount = Array("<tr>\n");

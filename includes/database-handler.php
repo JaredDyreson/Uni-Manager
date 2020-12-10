@@ -6,14 +6,14 @@
 <?php
 
 
-// include_once('classes/DatabaseFiller.php');
+ include_once('classes/DatabaseFiller.php');
 include_once('classes/Extractor.php');
 include_once('classes/ProfessorPortal.php');
-// include_once('classes/StudentPortal.php');
+include_once('classes/StudentPortal.php');
 
 $information = Array(
     "localhost",
-    "newuser",
+    "jared",
     "password",
     "csuf"
 );
@@ -25,22 +25,22 @@ $extractor = new Extractor($information);
 * will be removed when not needed
 */
 
-// $fillem = new Filler($extractor);
-// $fillem->fill();
+ //$fillem = new Filler($extractor);
+ //$fillem->fill();
 
 
 /*
 * Actions done by the webpage
 */
-$PP = new ProfessorPortal($extractor);
+//$PP = new ProfessorPortal($extractor);
 
 // needs to be generating html
 
-$webpage =  $PP->listCourses(26038);
-echo "$webpage\n";
-// $SP = new StudentPortal($extractor);
+//$webpage =  $PP->listCourses(26038);
+//echo "$webpage\n";
+$SP = new StudentPortal($extractor);
 
-// print_r($SP->showGrades(889546521));
+print_r($SP->showGrades(887300085));
 // $fillem->delete_();
 
 ?>

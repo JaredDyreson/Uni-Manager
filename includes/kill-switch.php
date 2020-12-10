@@ -10,7 +10,7 @@ include_once('classes/DatabaseFiller.php');
 
 $information = Array(
     "localhost",
-    "newuser", // change
+    "jared", // change
     "password",
     "csuf"
 );
