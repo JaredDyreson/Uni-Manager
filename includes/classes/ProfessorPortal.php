@@ -77,6 +77,7 @@ class ProfessorPortal {
             <td>$meeting_days</td>
             <td>$beginning_time</td>
             <td>$ending_time</td>
+            <td>$seats</td>
             </tr>
             EOD;
 

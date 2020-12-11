@@ -10,7 +10,7 @@ include_once('classes/ProfessorPortal.php');
 
 $information = Array(
     "localhost",
-    "jared",
+    "newuser",
     "password",
     "csuf"
 );
