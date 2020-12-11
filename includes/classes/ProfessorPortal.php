@@ -10,12 +10,13 @@ class ProfessorPortal {
 
     function listCourses($courseNumber, $courseID){
         $format = <<<EOD
-        select record_.grade, count(record_.grade) from (
+        select record_.grade, count(*) from(
             select * from record where course_id=$courseID
         ) record_
         join (
-            select * from course where number_=$courseNumber
-        ) course_ where course_.section=record_.course_id;
+                select * from course where number_=$courseNumber
+        ) course_ where course_.section=$courseID
+        group by grade;
         EOD;
 
         $output = $this->extractor->query($format);

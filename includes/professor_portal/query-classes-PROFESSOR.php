@@ -10,7 +10,7 @@ include_once('../classes/ProfessorPortal.php');
 
 $information = Array(
     "localhost",
-    "newuser",
+    "jared",
     "password",
     "csuf"
 );
@@ -19,8 +19,11 @@ $extractor = new Extractor($information);
 
 $PP = new ProfessorPortal($extractor);
 
-$courseID = $_POST["course-section"];
-$courseNumber = $_POST["course-number"];
+$courseID = 25620;
+$courseNumber = 332;
+
+//$courseID = $_POST["course-section"];
+//$courseNumber = $_POST["course-number"];
 
 $webpage =  $PP->listCourses($courseNumber, $courseID);
 echo "$webpage\n";
