@@ -66,13 +66,14 @@ class StudentPortal {
             from section
         ) section_ where course_.section=section_.number_;
         EOD;
-        //$query = sprintf($queryFormatLarge, $CLASS);
-        //$result =  $this->extractor->query($query);
+        $query = sprintf($queryFormatLarge, $CLASS);
+        $result =  $this->extractor->query($query);
 
         $titleQuery = "select title from course where number_=%d;";
         $titleQuery = sprintf($titleQuery, $CLASS);
         $titleResult =  $this->extractor->query($titleQuery)[0][0];
-        print_r($titleResult);
+        echo "$titleResult\n";
+        print_r($result);
         
 
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
