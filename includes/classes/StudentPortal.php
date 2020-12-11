@@ -35,7 +35,7 @@ class StudentPortal {
 
             $tableView = sprintf($tableformat, $grade, $class);
             array_push($tables, $tableView);
-	    }
+        }
         $tableView = implode(" ", $tables);
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
@@ -67,20 +67,50 @@ class StudentPortal {
         ) section_ where course_.section=section_.number_;
         EOD;
         $query = sprintf($queryFormatLarge, $CLASS);
-        $result =  $this->extractor->query($query);
+	$response =  $this->extractor->query($query);
+	$tables = Array();
+
+
+        foreach($response as $line){
+
+            list($section, $seats, $classroom, $days, $start, $end) = $line;
+
+            $tableformat = <<<EOD
+            <tr>
+            <td>$section</td>
+            <td>$seats</td>
+            <td>$classroom</td>
+            <td>$days</td>
+            <td>$start</td>
+            <td>$end</td>
+            </tr>
+            EOD;
+
+            // $tableView = sprintf($tableformat, $grade, $class);
+            array_push($tables, $tableformat);
+	    }
 
         $titleQuery = "select title from course where number_=%d;";
         $titleQuery = sprintf($titleQuery, $CLASS);
         $titleResult =  $this->extractor->query($titleQuery)[0][0];
-        echo "$titleResult\n";
-        print_r($result);
-        
 
-        $timeStamp = date('l jS \of F Y \a\t H:i:s');
+	$timeStamp = date('l jS \of F Y \a\t H:i:s');
+	$tables = implode(" ", $tables);
 
 	$HTMLCODE = <<<EOD
 	<center>
 	<h1>Section Report for $titleResult</h1>
+	<table>
+	<tr>
+	<td>Section</td>
+	<td>Seats</td>
+	<td>Classroom</td>
+	<td>Meeting Days</td>
+	<td>Start</td>
+	<td>End</td>
+	</tr>
+	$tables
+	</table>
 	Generated on: $timeStamp
 	</center>
 	EOD;

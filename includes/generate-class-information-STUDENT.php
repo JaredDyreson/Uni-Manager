@@ -20,7 +20,7 @@ $extractor = new Extractor($information);
 $SP = new StudentPortal($extractor);
 $course = $_POST["course-number"];
 
-$webpage = $SP->showGrades($course);
+$webpage = $SP->listClassInformation($course);
 echo "$webpage\n";
 
 ?>
