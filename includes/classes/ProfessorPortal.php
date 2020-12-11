@@ -22,7 +22,6 @@ class ProfessorPortal {
         $tables = Array();
 
         foreach($output as $value){
-            print_r($value);
             list($grade, $gradeCount) = $value;
 
             $tableformat = <<<EOD
@@ -34,23 +33,23 @@ class ProfessorPortal {
 
             array_push($tables, $tableformat);
         }
-        print_r($tables);
         $tables = implode(" ", $tables);
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
-        $format = <<<EOD
-        <center>
-        <h1>Grades Report for $courseNumber - $courseID</h1>
-        <table>
-        <tr>
-        <td>Number</td>
-        <td>Grade
-        </tr>
-        $tables
-        </table>
-        Generated on: $timeStamp
-        </center>
-        EOD;
+	$format = <<<EOD
+	<center>
+	<h1>Grades Report for $courseNumber - $courseID</h1>
+	<table>
+	<tr>
+	<td>Grade</td>
+	<td>Number</td>
+	</tr>
+	$tables
+	</table>
+	<br></br>
+	Generated on: $timeStamp
+	</center>
+	EOD;
 
         return $format;
     }
