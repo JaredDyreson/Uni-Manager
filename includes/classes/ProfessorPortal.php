@@ -53,5 +53,59 @@ class ProfessorPortal {
 
         return $format;
     }
+    function listSectionsCurrentlyTaught($SSN){
+        $format = <<<EOD
+        select course_.title, section_.classroom, section_.meeting_days, section_.beginning_time, section_.ending_time, section_.seats from (
+        select *
+        from section where professor=$SSN
+        ) section_
+        join (
+        select * from course 
+        ) course_ where section_.number_=course_.section
+        EOD;
+
+        $output = $this->extractor->query($format);
+        $tables = Array();
+
+        foreach($output as $value){
+            list($title, $classroom, $meeting_days, $beginning_time, $ending_time, $seats) = $value;
+
+            $tableformat = <<<EOD
+            <tr>
+            <td>$title</td>
+            <td>$classroom</td>
+            <td>$meeting_days</td>
+            <td>$beginning_time</td>
+            <td>$ending_time</td>
+            </tr>
+            EOD;
+
+            array_push($tables, $tableformat);
+        }
+        $tables = implode(" ", $tables);
+        $timeStamp = date('l jS \of F Y \a\t H:i:s');
+
+        $format = <<<EOD
+        <center>
+        <h1>Course Manifest for $SSN</h1>
+        <table>
+        <tr>
+        <td>Title</td>
+        <td>Classroom</td>
+        <td>Meeting Days</td>
+        <td>Beginning Time</td>
+        <td>Ending Time</td>
+        <td>Seats</td>
+        </tr>
+        $tables
+        </table>
+        <br></br>
+        Generated on: $timeStamp
+        </center>
+        EOD;
+
+        return $format;
+
+    }
 };
 ?>
