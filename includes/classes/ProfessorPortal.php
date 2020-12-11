@@ -8,34 +8,50 @@ class ProfessorPortal {
         $this->extractor = $xtractor;
     }
 
-    function listCourses(){
-        $format = "select grade, count(*) from record group by grade;";
-        $output = $this->extractor->query($format);
+    function listCourses($courseNumber, $courseID){
+        $format = <<<EOD
+        select record_.grade, count(record_.grade) from (
+            select * from record where course_id=$courseID
+        ) record_
+        join (
+            select * from course where number_=$courseNumber
+        ) course_ where course_.section=record_.course_id;
+        EOD;
 
-        $letter_grades = Array("<tr>\n");
-        $amount = Array("<tr>\n");
+        $output = $this->extractor->query($format);
+        $tables = Array();
 
         foreach($output as $value){
-            list($a, $b) = $value;
-            array_push($letter_grades, "\t<th>" . $a . "</th>\n");
-            array_push($amount, "\t<th>" . $b . "</th>\n");
+            print_r($value);
+            list($grade, $gradeCount) = $value;
+
+            $tableformat = <<<EOD
+            <tr>
+            <td>$grade</td>
+            <td>$gradeCount</td>
+            </tr>
+            EOD;
+
+            array_push($tables, $tableformat);
         }
-        array_push($letter_grades, "</tr>\n");
-        array_push($amount, "</tr>\n");
-        $letter_grades = implode(" ", $letter_grades);
-        $amount = implode(" ", $amount);
+        print_r($tables);
+        $tables = implode(" ", $tables);
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
         $format = <<<EOD
-	<center>
-	<h1>Grades Report</h1>
-	<table>
-	$letter_grades
-	$amount
-	</table>
-	Generated on: $timeStamp
-	</center>
-	EOD;
+        <center>
+        <h1>Grades Report for $courseNumber - $courseID</h1>
+        <table>
+        <tr>
+        <td>Number</td>
+        <td>Grade
+        </tr>
+        $tables
+        </table>
+        Generated on: $timeStamp
+        </center>
+        EOD;
+
         return $format;
     }
 };

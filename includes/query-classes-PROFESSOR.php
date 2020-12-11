@@ -19,7 +19,10 @@ $extractor = new Extractor($information);
 
 $PP = new ProfessorPortal($extractor);
 
-$webpage =  $PP->listCourses();
+$courseID = $_POST["course-section"];
+$courseNumber = $_POST["course-number"];
+
+$webpage =  $PP->listCourses($courseNumber, $courseID);
 echo "$webpage\n";
 
 ?>
