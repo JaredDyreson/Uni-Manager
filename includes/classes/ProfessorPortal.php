@@ -37,20 +37,20 @@ class ProfessorPortal {
         $tables = implode(" ", $tables);
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
-	$format = <<<EOD
-	<center>
-	<h1>Grades Report for $courseNumber - $courseID</h1>
-	<table>
-	<tr>
-	<td>Grade</td>
-	<td>Number</td>
-	</tr>
-	$tables
-	</table>
-	<br></br>
-	Generated on: $timeStamp
-	</center>
-	EOD;
+        $format = <<<EOD
+        <center>
+        <h1>Grades Report for $courseNumber - $courseID</h1>
+        <table>
+        <tr>
+        <td>Grade</td>
+        <td>Number</td>
+        </tr>
+        $tables
+        </table>
+        <br></br>
+        Generated on: $timeStamp
+        </center>
+        EOD;
 
         return $format;
     }
@@ -107,7 +107,6 @@ class ProfessorPortal {
         EOD;
 
         return $format;
-
     }
 };
 ?>
