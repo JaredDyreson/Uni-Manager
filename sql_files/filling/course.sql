@@ -1,6 +1,6 @@
 -- COURSES TABLE
 
-INSERT INTO course(number_, title, units, prerequisites, textbook, section) VALUES(315, "Prof Ethics in Computing", 3, "CPSC 311", "Ethics for the Information Age", 26038); 
+INSERT INTO course(number_, title, units, prerequisites, textbook, section) VALUES(315, "Prof Ethics in Computing", 3, "CPSC 311", "Ethics for the Information Age", 20638); 
 INSERT INTO course(number_, title, units, prerequisites, textbook, section) VALUES(349, "Web Front-End Engineering", 3, "CPSC 131", "Front-End Web Development", 25619);
 
 INSERT INTO course(number_, title, units, prerequisites, textbook, section) VALUES(332, "File Structure & Database", 3, "CPSC 131", "Fundamentals of Database Systems", 25620);
