@@ -25,7 +25,11 @@ $extractor = new Extractor($information);
 
 $PP = new ProfessorPortal($extractor);
 
-$webpage = $PP->listCourse(315, 
+$SSN = $_POST["professor-ssn"];
+
+$webpage = $PP->listSectionsCurrentlyTaught($SSN);
+
+echo "$webpage\n";
 
 
 ?>

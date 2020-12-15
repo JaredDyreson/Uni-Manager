@@ -10,12 +10,16 @@ include_once('../classes/StudentPortal.php');
 
 $information = Array(
     "localhost",
-    "newuser",
-    "password",
-    "csuf"
+    "cs332f11",
+    "Moadel0k",
+    "cs332f11"
 );
 
 $extractor = new Extractor($information);
+
+/*
+* Get class information given the course number
+*/
 
 $SP = new StudentPortal($extractor);
 $course = $_POST["course-number"];

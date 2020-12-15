@@ -56,6 +56,7 @@ EOT;
         return $format;
     }
     function listSectionsCurrentlyTaught($SSN){
+
 $format = <<<EOT
 select course_.title, section_.classroom, section_.meeting_days, section_.beginning_time, section_.ending_time, section_.seats from (
 select *
