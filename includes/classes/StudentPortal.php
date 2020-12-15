@@ -19,8 +19,7 @@ class StudentPortal {
 
         $query = sprintf($format, $CWID);
         $response = $this->extractor->query($query);
-        $tables = Array();
-
+	$tables = Array();
 
         foreach($response as $line){
 
@@ -32,8 +31,8 @@ class StudentPortal {
             <td>$grade</td>
             </tr>
             EOD;
-            array_push($tables, $tableView);
-        }
+            array_push($tables, $tableformat);
+	}
         $tableView = implode(" ", $tables);
         $timeStamp = date('l jS \of F Y \a\t H:i:s');
 
