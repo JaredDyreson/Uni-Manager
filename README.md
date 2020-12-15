@@ -2,41 +2,12 @@
 
 A university management application using SQL and PHP.
 
-All Python code that accidentally got pushed to main should be ignored.
+## Installation
 
-# Steps
+If data is not populated in the database, you can do that by navigating to `includes/` and run the command `php database-handler.php`.
+This will create the structure and then individually fill in the tables we have set in `sql_files/create-structure.sql`.
+To reset the database, you can run `php delete-database.php`, which will be in the same directory as the `database-handler.php` installation script.
 
-## Login to the Server
-
-```bash
-ssh cs332f11@shell.ecs.fullerton.edu
-# password is: Moadel0k
-```
-
-## Run MariaDB from Terminal
-
-```bash
-mysql -h mariadb -u cs332f11 -p
-```
-
-## Insert something
-
-You can navigate to `homepage/sql` and run the following:
-
-```
-USE cs332f11;
-SOURCE create-database.sql;
-SOURCE query.sql;
-SOURCE delete-database.sql;
-```
-
-## Getting things from the server via SCP
-
-```bash
-scp cs332f11@shell.ecs.fullerton.edu:/home/titan0/cs332f/cs332f11/homepage/ .
-# just specify the file path inside homepage
-```
-
-## Web browser navigation
+There was
 
 - [Link](http://ecs.fullerton.edu/~cs332f11/)
