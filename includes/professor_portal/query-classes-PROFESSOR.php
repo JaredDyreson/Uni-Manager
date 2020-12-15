@@ -7,6 +7,7 @@
 
 include_once('../classes/Extractor.php');
 include_once('../classes/ProfessorPortal.php');
+echo "cant make it here";
 
 $information = Array(
     "localhost",
