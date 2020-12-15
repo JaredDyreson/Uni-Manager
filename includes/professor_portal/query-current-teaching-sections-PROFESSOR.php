@@ -5,14 +5,16 @@
 
 <?php
 
+echo "the hell is going on ";
+
 include_once('../classes/Extractor.php');
 include_once('../classes/ProfessorPortal.php');
 
 $information = Array(
     "localhost",
-    "newuser",
-    "password",
-    "csuf"
+    "cs332f11",
+    "Moadel0k",
+    "cs332f11"
 );
 
 $extractor = new Extractor($information);
