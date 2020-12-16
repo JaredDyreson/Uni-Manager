@@ -2,7 +2,7 @@
 
 -- Ethics
 
-INSERT INTO section(number_, classroom, seats, meeting_days, beginning_time, ending_time, professor) VALUES(26038, "online", 40, "Saturday", "09:00am", "11:45am", 123456781);
+INSERT INTO section(number_, classroom, seats, meeting_days, beginning_time, ending_time, professor) VALUES(20638, "online", 40, "Saturday", "09:00am", "11:45am", 123456781);
 
 -- Web Dev
 INSERT INTO section(number_, classroom, seats, meeting_days, beginning_time, ending_time, professor) VALUES(25619, "online", 40, "Monday & Wednesday", "02:30pm", "03:45pm", 123456781);
