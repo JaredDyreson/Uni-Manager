@@ -8,4 +8,8 @@ If data is not populated in the database, you can do that by navigating to `incl
 This will create the structure and then individually fill in the tables we have set in `sql_files/create-structure.sql`.
 This is assuming `php` is a viable command.
 
-- [Homepage](http://ecs.fullerton.edu/~cs332f11/)
+## Information
+
+Please consult the documentation by going to `documentation/Database Project Documentation.pdf`.
+
+- [Navigate here to see](http://ecs.fullerton.edu/~cs332f11/)
